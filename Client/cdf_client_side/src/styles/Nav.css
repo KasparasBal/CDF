@@ -1,0 +1,67 @@
+/* colors:
+Accent Gray: #f1f3f5
+Text Color: #343a40
+Button: Hover 1:rgb(229, 232, 235);
+Main Orange: #f96b09;
+Button Hover 2: #e66108;
+ */
+
+.nav_container {
+  padding: 1rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6rem;
+  background-color: #fff;
+
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.116);
+}
+.search_bar {
+  width: 60rem;
+  padding: 1rem;
+
+  background-color: #f1f3f5;
+  border: none;
+  outline: none;
+}
+
+.cdf_logo_img {
+  width: 5rem;
+  height: 5rem;
+}
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+.link {
+  color: #343a40;
+
+  text-decoration: none;
+  background-color: #f1f3f5;
+
+  margin: 1rem;
+  padding: 1rem;
+  transition: 0.3s ease;
+}
+.link:hover {
+  background-color: rgb(229, 232, 235);
+  color: #0f7dde;
+  transition: 0.3s ease;
+}
+.link_login {
+  font-size: 2rem;
+  background-color: #f96b09;
+  color: #fff;
+}
+.link_login:hover {
+  background-color: #e66108;
+  color: #fff;
+}
+.link_icon {
+  width: 2rem;
+  height: 2rem;
+  font-size: 2rem;
+}

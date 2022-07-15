@@ -1,0 +1,62 @@
+.postInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.postInfo_container {
+  margin: 2rem;
+  background-color: #fff;
+}
+.postInfo_title_container {
+  padding: 2rem;
+}
+.postInfo_title {
+  color: #343a40;
+  text-align: center;
+  font-size: 3rem;
+}
+.postInfo_content {
+  padding: 2rem;
+  background-color: #fff;
+  width: 70rem;
+  min-height: 10rem;
+}
+.postInfo_body {
+  width: 100%;
+  font-size: 2rem;
+}
+.postInfo_votes {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: flex;
+  justify-content: flex-end;
+}
+.postInfo_votes span {
+  font-size: 2rem;
+}
+.postInfo_answers_title {
+  font-size: 2.3rem;
+  padding-bottom: 2rem;
+}
+.postInfo_answer_input_container {
+  padding: 2rem;
+}
+.postInfo_answer_input {
+  width: 100%;
+  height: 10rem;
+  outline: none;
+  padding: 1rem;
+  background-color: #f1f3f5;
+}
+.postInfo_hr {
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.postInfo_hr hr {
+  grid-column: 1/3;
+  grid-row: 1/2;
+  height: 0.1rem;
+}

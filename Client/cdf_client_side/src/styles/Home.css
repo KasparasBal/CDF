@@ -1,0 +1,28 @@
+.home {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  margin: 4rem;
+  position: relative;
+}
+.gif_container {
+  margin: 40rem 40rem;
+}
+.loading_gif {
+  width: 5rem;
+  height: 5rem;
+}
+.error {
+  text-align: center;
+  font-size: 3rem;
+}
+.posts_title {
+  font-size: 3rem;
+  text-align: center;
+}
+.posts {
+  grid-column: 2/3;
+  grid-row: 1/5;
+}

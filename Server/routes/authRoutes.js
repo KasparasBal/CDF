@@ -1,4 +1,5 @@
 const express = require("express");
+const auth = require("../auth");
 
 const {
   createPost,
@@ -9,12 +10,12 @@ const {
 const router = express.Router();
 
 //POST a new Post
-router.post("/create", createPost);
+router.post("/create", auth, createPost);
 
 //DELETE a Post
-router.delete("/:id", deletePost);
+router.delete("/:id", auth, deletePost);
 
 //Update a Post
-router.patch("/:id", updatePost);
+router.patch("/:id", auth, updatePost);
 
 module.exports = router;
