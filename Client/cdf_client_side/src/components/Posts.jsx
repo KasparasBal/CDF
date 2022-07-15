@@ -57,7 +57,7 @@ const Posts = (props) => {
     <div className="posts">
       {props.posts.map((post) => (
         <div className="post_preview" key={post.id}>
-          <Link to={`/posts/${post.id}`}>
+          <Link to={`/posts/${post._id}`}>
             <h2 className="post_title">
               {post.title}
               <hr></hr>

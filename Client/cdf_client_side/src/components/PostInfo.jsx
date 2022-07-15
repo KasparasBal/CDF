@@ -44,7 +44,7 @@ const PostInfo = () => {
     data: post,
     error,
     loading,
-  } = useFetch("http://localhost:8000/posts/" + id);
+  } = useFetch("http://localhost:8000/" + id);
 
   return (
     <div className="postInfo">

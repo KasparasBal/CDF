@@ -10,6 +10,7 @@ const register = (request, response) => {
     .then((hashedPassword) => {
       // user
       const user = new User({
+        username: request.body.username,
         email: request.body.email,
         password: hashedPassword,
       });

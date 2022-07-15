@@ -21,7 +21,7 @@ const Create = () => {
 
     setLoading(true);
 
-    fetch("http://localhost:8000/664/posts", {
+    fetch("http://localhost:8000", {
       text: "You need to login to create a post!",
       method: "POST",
       headers: { "Content-Type": "application/json" },

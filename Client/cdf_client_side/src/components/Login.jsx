@@ -1,41 +1,54 @@
-import "../styles/Login.css";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
-
-export const UserContext = React.createContext();
+const cookies = new Cookies();
 
 const Login = () => {
-  const [password, setPassword] = useState("");
+  // initial state
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState(false);
+  const [login, setLogin] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
+    // prevent the form from refreshing the whole page
     e.preventDefault();
-    const user = {
-      email,
-      password,
+
+    // set configurations
+    const configuration = {
+      method: "post",
+      url: "http://localhost:8000/login",
+      data: {
+        email,
+        password,
+      },
     };
 
-    setLoading(true);
-
-    fetch("http://localhost:8000/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    }).then(() => {
-      console.log("succesfully logged in");
-      setLoading(false);
-      setLoggedIn(true);
-      navigate("/");
-    });
+    // make the API call
+    axios(configuration)
+      .then((result) => {
+        // set the cookie
+        setLoading(true);
+        cookies.set("TOKEN", result.data.token, {
+          path: "/",
+        });
+        // redirect user to the auth page
+        navigate("/");
+        setLogin(true);
+      })
+      .catch((error) => {
+        error = new Error();
+        setError(error);
+      });
   };
 
   return (
     <div className="login_container">
-      <form onSubmit={handleLogin} className="login_form">
+      <form onSubmit={handleSubmit} className="login_form">
         <h1 className="login-form-title">Login</h1>
         <label className="login_label">Email</label>
         <input
@@ -62,6 +75,7 @@ const Login = () => {
             loading..
           </button>
         )}
+        {error && <div>Wrong Credentials</div>}
       </form>
       <div className="register_redirect_container">
         <h3>Not A User?</h3>

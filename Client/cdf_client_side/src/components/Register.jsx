@@ -13,16 +13,14 @@ const Register = () => {
   const handleRegister = (e) => {
     e.preventDefault();
     const user = {
-      email,
       username,
+      email,
       password,
-      posts: 0,
-      comments: 0,
     };
 
     setLoading(true);
 
-    fetch("http://localhost:8000/users", {
+    fetch("http://localhost:8000/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),

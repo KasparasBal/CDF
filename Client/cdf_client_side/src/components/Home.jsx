@@ -9,7 +9,7 @@ import loading_gif from "../img/Loading_Gif.gif";
 import useFetch from "../hooks/useFetch";
 
 const Home = (props) => {
-  const { data, loading, error } = useFetch("http://localhost:8000/664/posts");
+  const { data, loading, error } = useFetch("http://localhost:8000/");
   return (
     <div className="home">
       <Sidebar />

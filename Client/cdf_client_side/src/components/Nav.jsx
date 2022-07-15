@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import "../styles/Nav.css";
 import logo from "../img/Logo_Mini.jpg";
-import { UserContext } from "./Login";
 
 // SVGS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
