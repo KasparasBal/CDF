@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 import "../styles/Create.css";
 
 const Create = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
   const [error, setError] = useState(null);
+
+  const cookies = new Cookies();
+  const token = cookies.get("TOKEN");
+
   const navigate = useNavigate();
 
   const handleSubmitPost = (e) => {
@@ -14,10 +23,10 @@ const Create = () => {
     const post = {
       title,
       body,
-      likes: 0,
-      dislikes: 0,
-      comments: 0,
+      author_id: loggedIn.id,
+      author: loggedIn.username,
     };
+    console.log(loggedIn);
 
     setLoading(true);
 
@@ -25,6 +34,7 @@ const Create = () => {
       text: "You need to login to create a post!",
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      Authorization: `Bearer ${token}`,
       body: JSON.stringify(post),
     })
       .then((res) => {

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 const cookies = new Cookies();
 
 const Login = () => {
@@ -11,7 +13,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [login, setLogin] = useState(false);
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -33,12 +35,13 @@ const Login = () => {
       .then((result) => {
         // set the cookie
         setLoading(true);
+        setLoggedIn(true);
+        console.log(result.data);
         cookies.set("TOKEN", result.data.token, {
           path: "/",
         });
         // redirect user to the auth page
         navigate("/");
-        setLogin(true);
       })
       .catch((error) => {
         error = new Error();

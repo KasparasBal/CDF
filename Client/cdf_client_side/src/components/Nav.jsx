@@ -4,6 +4,11 @@ import { Link } from "react-router-dom";
 
 import "../styles/Nav.css";
 import logo from "../img/Logo_Mini.jpg";
+import { useNavigate } from "react-router-dom";
+
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
+import Cookies from "universal-cookie";
 
 // SVGS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +83,16 @@ const home = (
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const Nav = () => {
+  const navigate = useNavigate();
+  const { loggedIn, setLoggedIn } = useContext(UserContext);
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    navigate("/");
+
+    Cookies.remove("TOKEN", { domain: "http://localhost:3000", path: "/" });
+  };
+
   return (
     <nav className="nav_container">
       <div className="logo">
@@ -104,15 +119,23 @@ const Nav = () => {
           {pencil}
         </Link>
       </div>
-
-      <div className="login ">
-        <Link className="link link_login" to="/register">
-          {add_user}
-        </Link>
-        <Link className="link link_login" to="/login">
-          LOGIN
-        </Link>
-      </div>
+      {!loggedIn && (
+        <div className="login ">
+          <Link className="link link_login" to="/register">
+            {add_user}
+          </Link>
+          <Link className="link link_login" to="/login">
+            LOGIN
+          </Link>
+        </div>
+      )}
+      {loggedIn && (
+        <div>
+          <button className="link link_login" onClick={handleLogout}>
+            Logout
+          </button>
+        </div>
+      )}
     </nav>
   );
 };
