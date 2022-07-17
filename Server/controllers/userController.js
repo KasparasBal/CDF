@@ -46,7 +46,9 @@ const register = (request, response) => {
 
 const login = (request, response) => {
   // check if email exists
-  User.findOne({ email: request.body.email })
+  User.findOne({
+    email: request.body.email,
+  })
 
     // if email exists
     .then((user) => {
@@ -77,6 +79,7 @@ const login = (request, response) => {
           response.status(200).send({
             message: "Login Successful",
             email: user.email,
+            username: user.username,
             token,
           });
         })

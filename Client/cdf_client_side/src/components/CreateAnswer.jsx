@@ -1,12 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useContext } from "react";
 import { UsernameContext } from "../context/usernameContext";
 
 import "../styles/Create.css";
 
-const Create = () => {
-  const [title, setTitle] = useState("");
+const CreateAnswer = () => {
   const [body, setBody] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,28 +13,25 @@ const Create = () => {
 
   const token = localStorage.getItem("TOKEN");
 
-  const navigate = useNavigate();
-
   const handleAuthor = () => {
     setAuthor(userInfo);
   };
 
-  const handleSubmitPost = (e) => {
+  const handleSubmitAnswer = (e) => {
     e.preventDefault();
-    const post = {
-      title,
+    const answer = {
       body,
       author,
     };
     setLoading(true);
-    fetch("http://localhost:8000/posts/create", {
-      text: "You need to login to create a post!",
+    fetch("http://localhost:8000/answers", {
+      text: "You need to login to create an answer!",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(post),
+      body: JSON.stringify(answer),
     })
       .then((res) => {
         if (!res.ok) {
@@ -46,8 +41,6 @@ const Create = () => {
       })
       .then(() => {
         setLoading(false);
-
-        navigate("/");
       })
       .catch((err) => {
         setLoading(false);
@@ -56,40 +49,32 @@ const Create = () => {
   };
 
   return (
-    <div className="create_container">
-      <form onSubmit={handleSubmitPost} className="create_form">
-        <h1 className="create-form-title">Create New Post</h1>
-        <label className="create_label">Title</label>
-        <input
-          className="create_input"
-          type="text"
-          id="title"
-          required
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        ></input>
-        <label className="create_label">Body</label>
-        <textarea
-          className="create_input body_input"
-          id="body"
-          required
-          value={body}
-          onChange={(e) => setBody(e.target.value)}
-        ></textarea>
+    <div>
+      <form onSubmit={handleSubmitAnswer}>
+        <div className="postInfo_answer_input_container">
+          <div className="postInfo_answers_title">Your Answer:</div>
+          <textarea
+            id="body"
+            required
+            value={body}
+            onChange={(e) => setBody(e.target.value)}
+            className="postInfo_answer_input"
+          ></textarea>
+        </div>
         {!loading && (
           <button onClick={handleAuthor} className="create_btn">
-            Create Post
+            Submit
           </button>
         )}
         {loading && (
           <button disabled className="create_btn">
-            Creating Post..
+            Commenting..
           </button>
         )}
-        {error && <div>Must be logged in to create posts!</div>}
+        {error && <div>Must be logged in to answer to posts!</div>}
       </form>
     </div>
   );
 };
 
-export default Create;
+export default CreateAnswer;

@@ -65,3 +65,11 @@ Button Hover 2: #e66108;
   height: 2rem;
   font-size: 2rem;
 }
+.logout_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userName {
+  font-size: 2rem;
+}

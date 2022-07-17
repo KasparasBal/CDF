@@ -5,10 +5,9 @@ import { Link } from "react-router-dom";
 import "../styles/Nav.css";
 import logo from "../img/Logo_Mini.jpg";
 import { useNavigate } from "react-router-dom";
-
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
-import Cookies from "universal-cookie";
+import { UsernameContext } from "../context/usernameContext";
 
 // SVGS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,12 +84,14 @@ const home = (
 const Nav = () => {
   const navigate = useNavigate();
   const { loggedIn, setLoggedIn } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UsernameContext);
 
   const handleLogout = () => {
     setLoggedIn(false);
-    navigate("/");
 
-    Cookies.remove("TOKEN", { domain: "http://localhost:3000", path: "/" });
+    localStorage.removeItem("TOKEN");
+
+    navigate("/");
   };
 
   return (
@@ -112,6 +113,7 @@ const Nav = () => {
         <Link className="link" to="/">
           {home}
         </Link>
+
         <Link className="link" to="/profile">
           {user}
         </Link>
@@ -130,7 +132,8 @@ const Nav = () => {
         </div>
       )}
       {loggedIn && (
-        <div>
+        <div className="logout_container">
+          <div className="userName">Hello, {userInfo}!</div>
           <button className="link link_login" onClick={handleLogout}>
             Logout
           </button>

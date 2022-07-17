@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
-const cookies = new Cookies();
+import { UsernameContext } from "../context/usernameContext";
+import { IdContext } from "../context/usernameContext";
 
 const Login = () => {
   // initial state
@@ -14,6 +14,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(UserContext);
+  const { userInfo, setUserInfo } = useContext(UsernameContext);
+  const [authorid, setAuthorid] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -33,14 +35,12 @@ const Login = () => {
     // make the API call
     axios(configuration)
       .then((result) => {
-        // set the cookie
         setLoading(true);
         setLoggedIn(true);
-        console.log(result.data);
-        cookies.set("TOKEN", result.data.token, {
-          path: "/",
-        });
-        // redirect user to the auth page
+        setUserInfo(result.data.username);
+        console.log(userInfo);
+        localStorage.setItem("TOKEN", result.data.token);
+
         navigate("/");
       })
       .catch((error) => {

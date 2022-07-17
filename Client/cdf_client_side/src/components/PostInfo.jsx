@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
+import CreateAnswer from "./CreateAnswer";
 
 import "../styles/PostInfo.css";
 import loading_gif from "../img/Loading_Gif.gif";
@@ -72,11 +73,7 @@ const PostInfo = () => {
               <span>{post.dislikes}</span>
             </div>
           </div>
-          <div className="postInfo_answer_input_container">
-            <div className="postInfo_answers_title">Your Answer:</div>
-            <textarea className="postInfo_answer_input"></textarea>
-          </div>
-          <div className="all_answers"></div>
+          <CreateAnswer />
         </article>
       )}
     </div>

@@ -4,6 +4,10 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema(
   {
+    userId: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -12,10 +16,13 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    author: {
-      type: mongoose.Schema.ObjectId,
-      ref: "User",
-      required: true,
+    likes: {
+      type: Array,
+      default: [],
+    },
+    dislikes: {
+      type: Array,
+      default: [],
     },
   },
 

@@ -1,8 +1,16 @@
 const Post = require("../Models/postModel");
+const Answer = require("../Models/answerModel");
 
 const mongoose = require("mongoose");
 
-// Get All Coffee
+// Get All Answers
+const getAllAnswers = async (req, res) => {
+  const answers = await Answer.find({}).sort({ createdAt: -1 });
+
+  res.status(200).json(answers);
+};
+
+// Get All Posts
 const getAllPosts = async (req, res) => {
   const posts = await Post.find({}).sort({ createdAt: -1 });
 
@@ -29,4 +37,5 @@ const getSinglePost = async (req, res) => {
 module.exports = {
   getAllPosts,
   getSinglePost,
+  getAllAnswers,
 };

@@ -1,7 +1,7 @@
 import Posts from "./Posts";
-import RecentPosts from "./RecentPosts";
-import TopPosters from "./TopPosters";
-import Sidebar from "./Sidebar";
+// import RecentPosts from "./RecentPosts";
+// import TopPosters from "./TopPosters";
+// import Sidebar from "./Sidebar";
 
 import "../styles/Home.css";
 
@@ -12,8 +12,6 @@ const Home = (props) => {
   const { data, loading, error } = useFetch("http://localhost:8000/");
   return (
     <div className="home">
-      <Sidebar />
-
       <div className="posts">
         {error && <div className="error"> {error} </div>}
         {loading && (
@@ -24,9 +22,6 @@ const Home = (props) => {
         <div className="posts_title">All Questions</div>
         {data && <Posts posts={data} />}
       </div>
-
-      <RecentPosts />
-      <TopPosters />
     </div>
   );
 };

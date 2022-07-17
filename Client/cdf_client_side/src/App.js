@@ -10,32 +10,34 @@ import Register from "./components/Register";
 import PostInfo from "./components/PostInfo";
 
 import "./styles/App.css";
-import Footer from "./components/Footer";
+
 import { UserContext } from "../src/context/userContext";
-import axios from "axios";
+import { UsernameContext } from "../src/context/usernameContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState(null);
 
   return (
     <>
       <BrowserRouter>
         <UserContext.Provider value={{ loggedIn, setLoggedIn }}>
-          <Nav />
+          <UsernameContext.Provider value={{ userInfo, setUserInfo }}>
+            <Nav />
 
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
 
-            <Route path="/create" element={<Create />}></Route>
-            <Route path="/profile" element={<Profile />}></Route>
-            <Route path="/login" element={<Login />}></Route>
+              <Route path="/create" element={<Create />}></Route>
+              <Route path="/profile" element={<Profile />}></Route>
+              <Route path="/login" element={<Login />}></Route>
 
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/posts/:id" element={<PostInfo />}></Route>
-          </Routes>
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="/posts/:id" element={<PostInfo />}></Route>
+            </Routes>
+          </UsernameContext.Provider>
         </UserContext.Provider>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }

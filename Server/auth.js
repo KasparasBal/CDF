@@ -15,6 +15,7 @@ module.exports = async (request, response, next) => {
     request.user = user;
 
     // pass down functionality to the endpoint
+
     next();
   } catch (error) {
     response.status(401).json({
