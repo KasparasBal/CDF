@@ -3,8 +3,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const usersRoutes = require("./Routes/userRoutes");
-const freeRoutes = require("./Routes/freeRoutes");
-const authRoutes = require("./Routes/authRoutes");
+const postRoutes = require("./Routes/postRoutes");
 
 //middleware
 const dbConnect = require("./db/dbConnect");
@@ -46,8 +45,7 @@ app.get("/auth-endpoint", auth, (request, response) => {
 //routes
 
 app.use("/", usersRoutes);
-app.use("/", freeRoutes);
-app.use("/", authRoutes);
+app.use("/", postRoutes);
 
 //LISTENING TO SERVER
 

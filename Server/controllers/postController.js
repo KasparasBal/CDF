@@ -1,6 +1,32 @@
 const Post = require("../Models/postModel");
 const router = require("express").Router();
 
+//Create All Posts
+//////////////////////////////////////////////////////////
+const getAllPosts = async (req, res) => {
+  const posts = await Post.find({}).sort({ createdAt: -1 });
+
+  res.status(200).json(posts);
+};
+
+//Create A Single Post
+//////////////////////////////////////////////////////////
+const getSinglePost = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No Matching Post Found" });
+  }
+
+  const post = await Post.findById(id);
+
+  if (!post) {
+    return res.status(404).json({ error: "No Matching Post Found." });
+  }
+
+  res.status(200).json(post);
+};
+
 //Create A Post
 //////////////////////////////////////////////////////////
 
@@ -73,7 +99,7 @@ const LikePost = async (req, res) => {
 //Dislike A Post
 //////////////////////////////////////////////////////////
 
-const DisikePost = async (req, res) => {
+const DislikePost = async (req, res) => {
   try {
     //Find this post
     const post = await Post.findById(req.params.id);
@@ -88,4 +114,14 @@ const DisikePost = async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+};
+
+module.exports = {
+  getAllPosts,
+  getSinglePost,
+  CreatePost,
+  DeletePost,
+  UpdatePost,
+  LikePost,
+  DislikePost,
 };
