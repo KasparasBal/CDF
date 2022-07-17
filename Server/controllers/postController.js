@@ -1,7 +1,7 @@
 const Post = require("../Models/postModel");
 const router = require("express").Router();
 
-//Create All Posts
+//GetAll Posts
 //////////////////////////////////////////////////////////
 const getAllPosts = async (req, res) => {
   const posts = await Post.find({}).sort({ createdAt: -1 });
