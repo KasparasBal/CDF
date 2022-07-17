@@ -16,6 +16,9 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
+    author: {
+      type: String,
+    },
     likes: {
       type: Array,
       default: [],

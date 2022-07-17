@@ -80,6 +80,7 @@ const login = (request, response) => {
             message: "Login Successful",
             email: user.email,
             username: user.username,
+            userId: user._id,
             token,
           });
         })

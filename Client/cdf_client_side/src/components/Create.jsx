@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UsernameContext } from "../context/usernameContext";
+import { idContext } from "../context/idContext";
 
 import "../styles/Create.css";
 
@@ -11,7 +12,9 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [author, setAuthor] = useState("");
+  const [userId, setUserId] = useState("");
   const { userInfo, setUserInfo } = useContext(UsernameContext);
+  const { user, setUser } = useContext(idContext);
 
   const token = localStorage.getItem("TOKEN");
 
@@ -19,6 +22,9 @@ const Create = () => {
 
   const handleAuthor = () => {
     setAuthor(userInfo);
+    console.log(author);
+    console.log(user);
+    setUserId(user);
   };
 
   const handleSubmitPost = (e) => {
@@ -27,6 +33,7 @@ const Create = () => {
       title,
       body,
       author,
+      userId,
     };
     setLoading(true);
     fetch("http://localhost:8000/posts/create", {

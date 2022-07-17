@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
 import { UsernameContext } from "../context/usernameContext";
-import { IdContext } from "../context/usernameContext";
+import { idContext } from "../context/idContext";
 
 const Login = () => {
   // initial state
@@ -15,7 +15,7 @@ const Login = () => {
   const [error, setError] = useState(false);
   const { loggedIn, setLoggedIn } = useContext(UserContext);
   const { userInfo, setUserInfo } = useContext(UsernameContext);
-  const [authorid, setAuthorid] = useState("");
+  const { user, setUser } = useContext(idContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
@@ -38,7 +38,10 @@ const Login = () => {
         setLoading(true);
         setLoggedIn(true);
         setUserInfo(result.data.username);
+        setUser(result.data.userId);
         console.log(userInfo);
+        console.log(result.data.userId);
+        console.log(user);
         localStorage.setItem("TOKEN", result.data.token);
 
         navigate("/");

@@ -13,28 +13,32 @@ import "./styles/App.css";
 
 import { UserContext } from "../src/context/userContext";
 import { UsernameContext } from "../src/context/usernameContext";
+import { idContext } from "../src/context/idContext";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState(null);
+  const [user, setUser] = useState(null);
 
   return (
     <>
       <BrowserRouter>
         <UserContext.Provider value={{ loggedIn, setLoggedIn }}>
           <UsernameContext.Provider value={{ userInfo, setUserInfo }}>
-            <Nav />
+            <idContext.Provider value={{ user, setUser }}>
+              <Nav />
 
-            <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Routes>
+                <Route path="/" element={<Home />}></Route>
 
-              <Route path="/create" element={<Create />}></Route>
-              <Route path="/profile" element={<Profile />}></Route>
-              <Route path="/login" element={<Login />}></Route>
+                <Route path="/create" element={<Create />}></Route>
+                <Route path="/profile" element={<Profile />}></Route>
+                <Route path="/login" element={<Login />}></Route>
 
-              <Route path="/register" element={<Register />}></Route>
-              <Route path="/posts/:id" element={<PostInfo />}></Route>
-            </Routes>
+                <Route path="/register" element={<Register />}></Route>
+                <Route path="/posts/:id" element={<PostInfo />}></Route>
+              </Routes>
+            </idContext.Provider>
           </UsernameContext.Provider>
         </UserContext.Provider>
       </BrowserRouter>

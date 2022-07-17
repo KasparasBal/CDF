@@ -1,4 +1,5 @@
 const Post = require("../Models/postModel");
+const mongoose = require("mongoose");
 const router = require("express").Router();
 
 //GetAll Posts
