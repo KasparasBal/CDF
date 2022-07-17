@@ -82,39 +82,34 @@ const DeletePost = async (req, res) => {
 //////////////////////////////////////////////////////////
 const LikePost = async (req, res) => {
   try {
-    //Find this post
-    const post = await Post.findById(req.params.id);
-    //Check if likes include the liking User
-    if (!post.likes.includes(req.body.userId)) {
-      await post.updateOne({ $push: { likes: req.body.userId } });
-      res.status(200).json("post liked!");
-    } else {
-      await post.updateOne({ $pull: { likes: req.body.userId } });
-      res.status(200).json("like removed");
-    }
+    const { id } = req.params;
+    const post = await Post.findById(id);
+
+    const updatedPost = await Post.findByIdAndUpdate(
+      id,
+      { likeCount: post.likeCount + 1 },
+      { new: true }
+    );
+
+    res.json(updatedPost);
   } catch (err) {
     res.status(500).json(err);
   }
 };
 
-//Dislike A Post
+//Comment A Post
 //////////////////////////////////////////////////////////
+const CommentPost = async (req, res) => {
+  const { id } = req.params;
+  const { value } = req.body;
 
-const DislikePost = async (req, res) => {
-  try {
-    //Find this post
-    const post = await Post.findById(req.params.id);
-    //Check if dislikes include the disliking User
-    if (!post.dislikes.includes(req.body.userId)) {
-      await post.updateOne({ $push: { dislikes: req.body.userId } });
-      res.status(200).json("post disliked!");
-    } else {
-      await post.updateOne({ $pull: { dislikes: req.body.userId } });
-      res.status(200).json("dislike removed");
-    }
-  } catch (err) {
-    res.status(500).json(err);
-  }
+  const post = await Post.findById(id);
+
+  post.comments.push(value);
+
+  const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+
+  res.json(updatedPost);
 };
 
 module.exports = {
@@ -124,5 +119,5 @@ module.exports = {
   DeletePost,
   UpdatePost,
   LikePost,
-  DislikePost,
+  CommentPost,
 };

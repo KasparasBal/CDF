@@ -1,0 +1,11 @@
+.CommentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment {
+  border: 1px solid #333;
+  padding: 1rem;
+  margin: 2rem;
+  font-size: 1.2rem;
+}

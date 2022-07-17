@@ -8,7 +8,7 @@ const {
   DeletePost,
   UpdatePost,
   LikePost,
-  DislikePost,
+  CommentPost,
 } = require("../Controllers/postController");
 
 const router = express.Router();
@@ -35,9 +35,9 @@ router.delete("/posts/:id", auth, DeletePost);
 router.patch("/posts/:id", auth, UpdatePost);
 
 //Like a Post
-router.patch("/posts/:id", auth, LikePost);
+router.patch("/posts/:id/like", auth, LikePost);
 
-//Dislike a Post
-router.patch("/posts/:id", auth, DislikePost);
+//Comment a Post
+router.post("/posts/:id/comment", auth, CommentPost);
 
 module.exports = router;

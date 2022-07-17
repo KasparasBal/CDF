@@ -12,6 +12,7 @@ const Create = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [author, setAuthor] = useState("");
+
   const [userId, setUserId] = useState("");
   const { userInfo, setUserInfo } = useContext(UsernameContext);
   const { user, setUser } = useContext(idContext);

@@ -32,16 +32,6 @@ app.use((req, res, next) => {
 
 //TESTING ROUTES
 
-// not logged in
-app.get("/free-endpoint", (request, response) => {
-  response.json({ message: "Everyone is welcome" });
-});
-
-// logged in
-app.get("/auth-endpoint", auth, (request, response) => {
-  response.json({ message: "Hello logged in user" });
-});
-
 //routes
 
 app.use("/", usersRoutes);

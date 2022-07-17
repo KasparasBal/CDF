@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import CreateAnswer from "./CreateAnswer";
+import CommentSection from "./CommentSection";
 
 import "../styles/PostInfo.css";
 import loading_gif from "../img/Loading_Gif.gif";
@@ -73,7 +73,8 @@ const PostInfo = () => {
               <span>{post.dislikes}</span>
             </div>
           </div>
-          <CreateAnswer />
+          <div className="commentsTitle">Comments:</div>
+          <CommentSection post={post} />
         </article>
       )}
     </div>

@@ -19,12 +19,12 @@ const postSchema = new Schema(
     author: {
       type: String,
     },
-    likes: {
-      type: Array,
-      default: [],
+    likeCount: {
+      type: Number,
+      default: 0,
     },
-    dislikes: {
-      type: Array,
+    comments: {
+      type: [String],
       default: [],
     },
   },
