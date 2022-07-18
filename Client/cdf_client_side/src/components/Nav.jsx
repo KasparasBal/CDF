@@ -3,7 +3,8 @@
 import { Link } from "react-router-dom";
 
 import "../styles/Nav.css";
-import logo from "../img/Logo_Mini.jpg";
+import logo from "../img/Logo_Mini.png";
+import logoT from "../img/Logo_Mini_T.png";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../context/userContext";
@@ -96,9 +97,9 @@ const Nav = () => {
 
   return (
     <nav className="nav_container">
-      <div className="logo">
+      <Link to="/" className="logo">
         <img className="cdf_logo_img" src={logo} alt="cdf_small_logo"></img>
-      </div>
+      </Link>
 
       <div className="search">
         <input

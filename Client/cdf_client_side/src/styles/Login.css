@@ -34,10 +34,10 @@
   text-decoration: none;
 
   padding: 1rem;
-  width: 10rem;
+
   margin: 2rem;
 
-  background-color: #f96b09;
+  background-color: #333;
   border: none;
   color: #fff;
   font-size: 2rem;
@@ -47,7 +47,7 @@
 }
 .login_btn:hover,
 .register_redirect_container a:hover {
-  background-color: #e66108;
+  background-color: #009688;
   transition: 0.3s ease;
 }
 .login-form-title {

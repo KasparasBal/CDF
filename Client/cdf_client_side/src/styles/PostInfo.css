@@ -11,7 +11,7 @@
 }
 .postInfo_title_container {
   padding: 2rem;
-  background-color: #0f7dde;
+  background-color: #333;
 }
 .postInfo_title {
   color: #fff;
@@ -46,6 +46,7 @@
 .postInfo_hr {
   margin: 2rem;
   display: grid;
+  background-color: #fff;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }

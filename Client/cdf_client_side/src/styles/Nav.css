@@ -47,17 +47,17 @@ Button Hover 2: #e66108;
   transition: 0.3s ease;
 }
 .link:hover {
-  background-color: rgb(229, 232, 235);
-  color: #0f7dde;
+  background-color: rgb(194, 196, 199);
+  color: #009688;
   transition: 0.3s ease;
 }
 .link_login {
   font-size: 2rem;
-  background-color: #f96b09;
+  background-color: #333;
   color: #fff;
 }
 .link_login:hover {
-  background-color: #e66108;
+  background-color: #009688;
   color: #fff;
 }
 .link_icon {

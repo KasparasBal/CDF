@@ -12,7 +12,6 @@ const CommentInput = () => {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [author, setAuthor] = useState("");
 
   const [userId, setUserId] = useState("");
   const { userInfo, setUserInfo } = useContext(UsernameContext);
@@ -23,8 +22,6 @@ const CommentInput = () => {
   const navigate = useNavigate();
 
   const handleAuthor = () => {
-    setAuthor(userInfo);
-    console.log(author);
     console.log(user);
     setUserId(user);
   };
@@ -34,8 +31,8 @@ const CommentInput = () => {
     const post = {
       postId: id,
       content,
-      author,
-      userId,
+      author: userInfo,
+      user: userId,
     };
     setLoading(true);
     fetch("http://localhost:8000/comment", {
@@ -63,7 +60,7 @@ const CommentInput = () => {
   };
 
   return (
-    <div className="create_container">
+    <div className="createComment_container">
       <form onSubmit={handleSubmitPost} className="comment_create_form">
         <textarea
           className="comment_input"

@@ -81,20 +81,20 @@ const PostInfo = (props) => {
       )}
       {post && (
         <article className="postInfo_container">
-          <div className="postInfo_title_container">
-            <h2 className="postInfo_title">{post.title}</h2>
-          </div>
-          <hr className="postInfo_hr"></hr>
-          <div className="postInfo_content">
-            <div className="postInfo_body">{post.body}</div>
-          </div>
-          <div className="postInfo_hr">
-            <hr></hr>
-            <div className="postInfo_votes">
-              <button className="reaction_btn">{like}</button>
-              <span>{post.likes}</span>
-              <button className="reaction_btn">{dislike}</button>
-              <span>{post.dislikes}</span>
+          <div className="inner_post">
+            <div className="postInfo_title_container">
+              <h2 className="postInfo_title">{post.title}</h2>
+            </div>
+            <div className="postInfo_content">
+              <div className="postInfo_body">{post.body}</div>
+            </div>
+            <div className="postInfo_hr">
+              <div className="postInfo_votes">
+                <button className="reaction_btn">{like}</button>
+                <span>{post.likes}</span>
+                <button className="reaction_btn">{dislike}</button>
+                <span>{post.dislikes}</span>
+              </div>
             </div>
           </div>
           <div className="postInfo_answer_input_container"></div>
@@ -116,7 +116,7 @@ const PostInfo = (props) => {
                               return (
                                 <div key={item._id}>
                                   <div className="comment_username">
-                                    {item.username}
+                                    Author: {item.username}
                                   </div>
                                 </div>
                               );

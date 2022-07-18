@@ -46,13 +46,13 @@
   background-color: #fff;
   border: none;
   cursor: pointer;
-  color: #0f7dde;
+  color: #333;
   margin: 0.5rem;
   margin-right: 1rem;
   transition: 0.3s ease;
 }
 .reaction_btn:hover {
-  color: #f96b09;
+  color: #009688;
   transition: 0.3s ease;
 }
 hr {
