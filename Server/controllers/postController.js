@@ -2,10 +2,16 @@ const Post = require("../Models/postModel");
 const mongoose = require("mongoose");
 const router = require("express").Router();
 
-//GetAll Posts
-//////////////////////////////////////////////////////////
+// const posts = await Post.find()
+// .populate({ path: "comments" })
+
+//GetAllPosts;
+//////////////////////////////////////////////////////
 const getAllPosts = async (req, res) => {
-  const posts = await Post.find({}).sort({ createdAt: -1 });
+  const posts = await Post.find()
+    .select("title body author userId")
+
+    .sort({ createdAt: -1 });
 
   res.status(200).json(posts);
 };
@@ -19,7 +25,7 @@ const getSinglePost = async (req, res) => {
     return res.status(400).json({ error: "No Matching Post Found" });
   }
 
-  const post = await Post.findById(id);
+  const post = await Post.findById(id).select("title body author userId");
 
   if (!post) {
     return res.status(404).json({ error: "No Matching Post Found." });
@@ -112,6 +118,49 @@ const CommentPost = async (req, res) => {
   res.json(updatedPost);
 };
 
+//Comment
+const comment = (req, res) => {
+  let comment = req.body.comment;
+  comment.postedBy = req.body.userId;
+
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    { $push: { comments: comment } },
+    { new: true }
+      .populate("comments.userId", "_id name")
+      .populate("userId", "_id name")
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    } else {
+      res.json(result);
+    }
+  });
+};
+
+//Delete Comment
+const deleteComment = (req, res) => {
+  let comment = req.body.comment;
+
+  Post.findByIdAndUpdate(
+    req.body.postId,
+    { $pull: { comments: { _id: comment._id } } },
+    { new: true }
+      .populate("comments.userId", "_id name")
+      .populate("userId", "_id name")
+  ).exec((err, result) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    } else {
+      res.json(result);
+    }
+  });
+};
+
 module.exports = {
   getAllPosts,
   getSinglePost,
@@ -120,4 +169,6 @@ module.exports = {
   UpdatePost,
   LikePost,
   CommentPost,
+  comment,
+  deleteComment,
 };

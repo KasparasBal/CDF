@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
-import CommentSection from "./CommentSection";
+import { useState, useEffect } from "react";
+import CommentInput from "./CommentInput";
 
 import "../styles/PostInfo.css";
 import loading_gif from "../img/Loading_Gif.gif";
@@ -39,13 +40,36 @@ const dislike = (
   </svg>
 );
 
-const PostInfo = () => {
+const PostInfo = (props) => {
+  const [comments, setComments] = useState(null);
+  const [buffering, setBuffering] = useState(true);
+  const [warning, setWarning] = useState(null);
   const { id } = useParams();
   const {
     data: post,
     error,
     loading,
-  } = useFetch("http://localhost:8000/" + id);
+  } = useFetch("http://localhost:8000/posts/" + id);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/comments")
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("OOPS! something went wrong!");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        setComments(data);
+        setBuffering(false);
+        setWarning(null);
+        console.log(data);
+      })
+      .catch((err) => {
+        setBuffering(false);
+        setWarning(err.message);
+      });
+  }, []);
 
   return (
     <div className="postInfo">
@@ -73,10 +97,44 @@ const PostInfo = () => {
               <span>{post.dislikes}</span>
             </div>
           </div>
-          <div className="commentsTitle">Comments:</div>
-          <CommentSection post={post} />
+          <div className="postInfo_answer_input_container"></div>
+          <div className="all_answers"></div>
+          <div className="commentsTitle">All Answers:</div>
+          {comments &&
+            comments.map((comment) => {
+              if (id === comment.postId) {
+                return (
+                  <div className="comment">
+                    <div key={comment._id}>
+                      {
+                        <div>
+                          <div className="comment_content">
+                            {comment.content}
+                          </div>
+                          <div>
+                            {comment.user.map((item) => {
+                              return (
+                                <div key={item._id}>
+                                  <div className="comment_username">
+                                    {item.username}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      }
+                      <div></div>
+                    </div>
+                  </div>
+                );
+              }
+            })}
         </article>
       )}
+      <div className="answering_section">
+        <CommentInput />
+      </div>
     </div>
   );
 };

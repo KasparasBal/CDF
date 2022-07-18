@@ -4,6 +4,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const usersRoutes = require("./Routes/userRoutes");
 const postRoutes = require("./Routes/postRoutes");
+const commentRoutes = require("./Routes/commentRoutes");
 
 //middleware
 const dbConnect = require("./db/dbConnect");
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 
 app.use("/", usersRoutes);
 app.use("/", postRoutes);
+app.use("/", commentRoutes);
 
 //LISTENING TO SERVER
 

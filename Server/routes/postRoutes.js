@@ -9,6 +9,8 @@ const {
   UpdatePost,
   LikePost,
   CommentPost,
+  comment,
+  deleteComment,
 } = require("../Controllers/postController");
 
 const router = express.Router();
@@ -21,7 +23,7 @@ const router = express.Router();
 router.get("/", getAllPosts);
 
 //Get single Post
-router.get("/:id", getSinglePost);
+router.get("/posts/:id", getSinglePost);
 
 //Needs to Be Authenticated ----------------------
 
@@ -39,5 +41,9 @@ router.patch("/posts/:id/like", auth, LikePost);
 
 //Comment a Post
 router.post("/posts/:id/comment", auth, CommentPost);
+
+//Comments
+router.put("/posts/comment", auth, comment);
+router.put("/posts/deleteComment", auth, deleteComment);
 
 module.exports = router;

@@ -1,7 +1,4 @@
 import Posts from "./Posts";
-// import RecentPosts from "./RecentPosts";
-// import TopPosters from "./TopPosters";
-// import Sidebar from "./Sidebar";
 
 import "../styles/Home.css";
 

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/Posts.css";
+import { useParams } from "react-router-dom";
 
 const like = (
   <svg
@@ -53,6 +54,8 @@ const comment = (
 );
 
 const Posts = (props) => {
+  const { id } = useParams();
+  console.log(id);
   return (
     <div className="posts">
       {props.posts.map((post) => (
