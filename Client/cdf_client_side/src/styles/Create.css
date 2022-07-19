@@ -1,0 +1,54 @@
+.create_container {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create_form {
+  background-color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  min-height: 50rem;
+  width: 100rem;
+
+  margin: 5rem;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.116);
+}
+.create_label {
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  padding: 1rem;
+}
+.create_input {
+  padding: 1rem;
+  width: 60%;
+}
+.body_input {
+  min-height: 10rem;
+}
+.create_btn {
+  padding: 1rem;
+  width: 10rem;
+  margin: 2rem;
+
+  background-color: #333;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+.create_btn:hover {
+  background-color: #009688;
+  transition: 0.3s ease;
+}
+.create-form-title {
+  font-size: 3rem;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}

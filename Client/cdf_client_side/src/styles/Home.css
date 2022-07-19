@@ -1,0 +1,71 @@
+.home {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  margin: 4rem;
+}
+.gif_container {
+  margin: 40rem 40rem;
+}
+.loading_gif {
+  width: 5rem;
+  height: 5rem;
+}
+.error {
+  text-align: center;
+  font-size: 3rem;
+}
+.posts_title {
+  font-size: 3rem;
+  text-align: center;
+}
+.posts {
+  grid-column: 2/3;
+  grid-row: 1/5;
+}
+.filter_select_container {
+  font-size: 1.5rem;
+}
+.filter_select {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 1rem;
+  margin-left: 1rem;
+  background-color: #fff;
+}
+.arrow_btn {
+  color: #343a40;
+
+  text-decoration: none;
+  background-color: #f1f3f5;
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem;
+  padding: 1rem;
+  transition: 0.3s ease;
+  border: none;
+}
+.arrow_btn:hover {
+  background-color: rgb(194, 196, 199);
+  color: #009688;
+  transition: 0.3s ease;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 10rem;
+}
+.pagination_filter_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem 2rem 0rem 2rem;
+}
+.page_number {
+  font-size: 2rem;
+  font-weight: bold;
+}

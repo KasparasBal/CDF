@@ -1,0 +1,9 @@
+/* colors:
+Accent Gray: #f1f3f5
+Text Color: #343a40
+Button: Hover 1:rgb(229, 232, 235);
+Accent 1: #009688;
+Accent 1:Hover: #009688;
+Accent 2: #0f7dde;
+Primary Color: #333;
+ */
