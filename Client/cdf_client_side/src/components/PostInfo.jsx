@@ -116,7 +116,14 @@ const PostInfo = (props) => {
                               return (
                                 <div key={item._id}>
                                   <div className="comment_username">
-                                    Author: {item.username}
+                                    <span>
+                                      <img
+                                        className="comment_user_picture"
+                                        src={item.picture}
+                                        alt="profile_pic"
+                                      />
+                                    </span>{" "}
+                                    {item.username}
                                   </div>
                                 </div>
                               );

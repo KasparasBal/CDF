@@ -36,7 +36,7 @@ const commentCtrl = {
   getComments: async (req, res) => {
     try {
       const comments = await Comments.find()
-        .select("content _id author user postId ")
+        .select("content _id author user postId edited ")
         .populate("user");
 
       res.json(comments);

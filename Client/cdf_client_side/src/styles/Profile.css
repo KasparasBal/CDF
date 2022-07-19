@@ -24,6 +24,7 @@
   margin: 5rem;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.116);
 }
+
 .profile_image {
   width: 10rem;
   height: 10rem;
@@ -42,27 +43,20 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 2rem;
-  right: 2rem;
-  color: #343a40;
-
   text-decoration: none;
-
-  margin: 1rem;
-  padding: 1rem;
+  top: 16.8rem;
+  width: 10.2rem;
+  height: 10.2rem;
   transition: 0.3s ease;
   border: none;
   border-radius: 500rem;
+  z-index: 1;
+  opacity: 0;
 }
 .edit_profile:hover {
-  background-color: #f1f3f5;
+  background-color: #f1f3f55b;
   color: #009688;
   transition: 0.3s ease;
   cursor: pointer;
-}
-.edit_text {
-  color: #8e9397;
-  text-align: center;
-  font-size: 1.5rem;
-  margin-right: 1rem;
+  opacity: 100;
 }

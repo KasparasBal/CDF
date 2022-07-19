@@ -46,7 +46,7 @@ const Profile = (props) => {
       {profile && (
         <div className="profile_card">
           <Link to={`/editProfile/${user}`} className="edit_profile">
-            <span className="edit_text">Edit Profile:</span> {pencil}
+            {pencil}
           </Link>
           <div className="image_container">
             <img

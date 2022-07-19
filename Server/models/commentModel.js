@@ -13,6 +13,10 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
+    edited: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

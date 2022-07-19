@@ -6,7 +6,6 @@ import { idContext } from "../context/idContext";
 import { useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
-  const [username, setUsername] = useState("");
   const { user: userId, setUser } = useContext(idContext);
   const [picture, setPicture] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,6 +13,7 @@ const EditProfile = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
+
     const user = {
       picture,
     };
@@ -23,7 +23,7 @@ const EditProfile = () => {
     fetch("http://localhost:8000/editProfile/" + userId, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      picture: JSON.stringify(user),
+      body: JSON.stringify(user),
     }).then(() => {
       console.log("updated user");
       setLoading(false);
@@ -34,21 +34,15 @@ const EditProfile = () => {
   return (
     <div className="login_container">
       <form onSubmit={handleEdit} className="login_form">
-        <h1 className="login-form-title">Edit Your Profile</h1>
-        <label className="login_label">Username</label>
-        <input
-          className="login_input"
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        ></input>
+        <h1 className="login-form-title">Change you Profile Picture</h1>
+
         <label className="login_label">Picture Url</label>
         <input
           className="login_input"
           type="text"
           id="picture"
           value={picture}
+          required
           onChange={(e) => setPicture(e.target.value)}
         ></input>
 

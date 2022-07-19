@@ -8,9 +8,15 @@ const router = require("express").Router();
 //GetAllPosts;
 //////////////////////////////////////////////////////
 const getAllPosts = async (req, res) => {
+  //pagination
+  const page = req.query.p || 0;
+  const postsPerPage = 3;
+
   const posts = await Post.find()
     .select("title body author userId")
-    .sort({ createdAt: -1 });
+    .sort({ createdAt: -1 })
+    .skip(page * postsPerPage)
+    .limit(postsPerPage);
 
   res.status(200).json(posts);
 };
@@ -110,64 +116,6 @@ const LikePost = async (req, res) => {
   }
 };
 
-//Comment A Post
-//////////////////////////////////////////////////////////
-const CommentPost = async (req, res) => {
-  const { id } = req.params;
-  const { value } = req.body;
-
-  const post = await Post.findById(id);
-
-  post.comments.push(value);
-
-  const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
-
-  res.json(updatedPost);
-};
-
-//Comment
-const comment = (req, res) => {
-  let comment = req.body.comment;
-  comment.postedBy = req.body.userId;
-
-  Post.findByIdAndUpdate(
-    req.body.postId,
-    { $push: { comments: comment } },
-    { new: true }
-      .populate("comments.userId", "_id name")
-      .populate("userId", "_id name")
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(400).json({
-        error: err,
-      });
-    } else {
-      res.json(result);
-    }
-  });
-};
-
-//Delete Comment
-const deleteComment = (req, res) => {
-  let comment = req.body.comment;
-
-  Post.findByIdAndUpdate(
-    req.body.postId,
-    { $pull: { comments: { _id: comment._id } } },
-    { new: true }
-      .populate("comments.userId", "_id name")
-      .populate("userId", "_id name")
-  ).exec((err, result) => {
-    if (err) {
-      return res.status(400).json({
-        error: err,
-      });
-    } else {
-      res.json(result);
-    }
-  });
-};
-
 module.exports = {
   getAllPosts,
   getSinglePost,
@@ -175,8 +123,5 @@ module.exports = {
   DeletePost,
   UpdatePost,
   LikePost,
-  CommentPost,
-  comment,
-  deleteComment,
   getAllPostsCount,
 };

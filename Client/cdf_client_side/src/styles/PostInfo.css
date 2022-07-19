@@ -61,6 +61,9 @@
   color: #343a40;
 }
 .comment_username {
+  display: flex;
+
+  align-items: center;
   padding: 1rem;
   font-size: 1.2rem;
   color: #555;
@@ -76,4 +79,10 @@
 }
 .answering_section {
   margin-top: 5rem;
+}
+.comment_user_picture {
+  border-radius: 500rem;
+  width: 2rem;
+  height: 2rem;
+  margin: 0rem 0.5rem 0rem 1rem;
 }

@@ -8,9 +8,6 @@ const {
   DeletePost,
   UpdatePost,
   LikePost,
-  CommentPost,
-  comment,
-  deleteComment,
   getAllPostsCount,
 } = require("../Controllers/postController");
 
@@ -42,12 +39,5 @@ router.patch("/posts/:id", auth, UpdatePost);
 
 //Like a Post
 router.patch("/posts/:id/like", auth, LikePost);
-
-//Comment a Post
-router.post("/posts/:id/comment", auth, CommentPost);
-
-//Comments
-router.put("/posts/comment", auth, comment);
-router.put("/posts/deleteComment", auth, deleteComment);
 
 module.exports = router;
