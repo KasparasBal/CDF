@@ -14,8 +14,8 @@ const commentSchema = new Schema(
       required: true,
     },
     edited: {
-      type: String,
-      default: "",
+      type: Boolean,
+      default: false,
     },
   },
   {

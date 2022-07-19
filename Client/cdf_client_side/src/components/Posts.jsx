@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "../styles/Posts.css";
 import { useContext } from "react";
-import { LikeContext } from "../context/LikeContext";
 import { useParams } from "react-router-dom";
 
 const like = (
@@ -38,32 +37,13 @@ const dislike = (
   </svg>
 );
 
-const comment = (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="h-6 w-6"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    stroke-width="2"
-  >
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-    />
-  </svg>
-);
-
 const Posts = (props) => {
   const { id } = useParams();
-  console.log(id);
-  const { color, setColor } = useContext(LikeContext);
 
   return (
     <div className="posts">
       {props.posts.map((post) => (
-        <div className="post_preview" key={post.id}>
+        <div className="post_preview" key={post._id}>
           <Link to={`/posts/${post._id}`}>
             <h2 className="post_title">
               {post.title}
@@ -71,14 +51,6 @@ const Posts = (props) => {
             </h2>
           </Link>
           <p className="post_author"> Author: {post.author}</p>
-          <div className="post_reactions">
-            <button className="reaction_btn">{like}</button>
-            <span>{post.likes}</span>
-            <button className="reaction_btn">{dislike}</button>
-            <span>{post.dislikes}</span>
-            <button className="reaction_btn">{comment}</button>
-            <span>{post.comments}</span>
-          </div>
         </div>
       ))}
     </div>

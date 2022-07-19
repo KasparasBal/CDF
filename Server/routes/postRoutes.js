@@ -9,6 +9,8 @@ const {
   UpdatePost,
   LikePost,
   getAllPostsCount,
+  getAllAnsweredPosts,
+  getAllUnAnsweredPosts,
 } = require("../Controllers/postController");
 
 const router = express.Router();
@@ -19,6 +21,12 @@ const router = express.Router();
 
 //Get All Posts
 router.get("/", getAllPosts);
+
+//Get All Answered Posts
+router.get("/answered", getAllAnsweredPosts);
+
+//Get All UnAnswered Posts
+router.get("/unanswered", getAllUnAnsweredPosts);
 
 //Get All Posts
 router.get("/count", getAllPostsCount);
@@ -38,6 +46,6 @@ router.delete("/posts/:id", auth, DeletePost);
 router.patch("/posts/:id", auth, UpdatePost);
 
 //Like a Post
-router.patch("/posts/:id/like", auth, LikePost);
+router.put("/posts/:id/like", LikePost);
 
 module.exports = router;

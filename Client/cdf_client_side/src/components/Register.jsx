@@ -25,7 +25,6 @@ const Register = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     }).then(() => {
-      console.log("added user");
       setLoading(false);
       navigate("/login");
     });

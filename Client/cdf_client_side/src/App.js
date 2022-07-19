@@ -14,7 +14,6 @@ import "./styles/App.css";
 
 import { UserContext } from "../src/context/userContext";
 import { commentContext } from "./context/commentContext";
-import { LikeContext } from "./context/LikeContext";
 import { UsernameContext } from "../src/context/usernameContext";
 import { idContext } from "../src/context/idContext";
 
@@ -23,7 +22,6 @@ function App() {
   const [userInfo, setUserInfo] = useState(null);
   const [user, setUser] = useState(null);
   const [render, setRender] = useState(false);
-  const [color, setColor] = useState("reaction_btn");
 
   return (
     <>
@@ -32,24 +30,22 @@ function App() {
           <UsernameContext.Provider value={{ userInfo, setUserInfo }}>
             <idContext.Provider value={{ user, setUser }}>
               <commentContext.Provider value={{ render, setRender }}>
-                <LikeContext.Provider value={(color, setColor)}>
-                  <Nav />
+                <Nav />
 
-                  <Routes>
-                    <Route path="/" element={<Home />}></Route>
+                <Routes>
+                  <Route path="/" element={<Home />}></Route>
 
-                    <Route path="/create" element={<Create />}></Route>
-                    <Route path="/profile" element={<Profile />}></Route>
-                    <Route path="/login" element={<Login />}></Route>
-                    <Route
-                      path="/editProfile/:id"
-                      element={<EditProfile />}
-                    ></Route>
+                  <Route path="/create" element={<Create />}></Route>
+                  <Route path="/profile" element={<Profile />}></Route>
+                  <Route path="/login" element={<Login />}></Route>
+                  <Route
+                    path="/editProfile/:id"
+                    element={<EditProfile />}
+                  ></Route>
 
-                    <Route path="/register" element={<Register />}></Route>
-                    <Route path="/posts/:id" element={<PostInfo />}></Route>
-                  </Routes>
-                </LikeContext.Provider>
+                  <Route path="/register" element={<Register />}></Route>
+                  <Route path="/posts/:id" element={<PostInfo />}></Route>
+                </Routes>
               </commentContext.Provider>
             </idContext.Provider>
           </UsernameContext.Provider>

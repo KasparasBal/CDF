@@ -25,7 +25,6 @@ const EditProfile = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user),
     }).then(() => {
-      console.log("updated user");
       setLoading(false);
       navigate("/profile");
     });

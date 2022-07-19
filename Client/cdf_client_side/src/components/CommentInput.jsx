@@ -22,7 +22,6 @@ const CommentInput = () => {
   const navigate = useNavigate();
 
   const handleAuthor = () => {
-    console.log(user);
     setUserId(user);
   };
 

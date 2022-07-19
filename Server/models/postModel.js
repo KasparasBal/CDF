@@ -19,10 +19,19 @@ const postSchema = new Schema(
     author: {
       type: String,
     },
-    likeCount: {
+    likes: {
+      type: Array,
+      default: [],
+    },
+    commentsArrayLength: {
       type: Number,
       default: 0,
     },
+    edited: {
+      type: Boolean,
+      default: false,
+    },
+
     comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comment" }],
   },
 

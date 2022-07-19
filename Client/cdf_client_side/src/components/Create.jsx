@@ -23,8 +23,6 @@ const Create = () => {
 
   const handleAuthor = () => {
     setAuthor(userInfo);
-    console.log(author);
-    console.log(user);
     setUserId(user);
   };
 

@@ -9,13 +9,48 @@ const router = require("express").Router();
 //////////////////////////////////////////////////////
 const getAllPosts = async (req, res) => {
   //pagination
-  const page = req.query.p || 0;
+  const page = req.query.p || 1;
   const postsPerPage = 3;
+  const skip = (page - 1) * postsPerPage;
 
   const posts = await Post.find()
     .select("title body author userId")
     .sort({ createdAt: -1 })
-    .skip(page * postsPerPage)
+    .skip(skip)
+    .limit(postsPerPage);
+
+  res.status(200).json(posts);
+};
+
+//GetAllAnsweredPosts;
+//////////////////////////////////////////////////////
+const getAllAnsweredPosts = async (req, res) => {
+  //pagination
+  const page = req.query.p || 1;
+  const postsPerPage = 3;
+  const skip = (page - 1) * postsPerPage;
+
+  const posts = await Post.find({ commentsArrayLength: { $gt: 0 } })
+    .select("title body author userId")
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(postsPerPage);
+
+  res.status(200).json(posts);
+};
+
+//GetAllPosts;
+//////////////////////////////////////////////////////
+const getAllUnAnsweredPosts = async (req, res) => {
+  //pagination
+  const page = req.query.p || 1;
+  const postsPerPage = 3;
+  const skip = (page - 1) * postsPerPage;
+
+  const posts = await Post.find({ comments: { $size: 0 } })
+    .select("title body author userId")
+    .sort({ createdAt: -1 })
+    .skip(skip)
     .limit(postsPerPage);
 
   res.status(200).json(posts);
@@ -38,7 +73,7 @@ const getSinglePost = async (req, res) => {
     return res.status(400).json({ error: "No Matching Post Found" });
   }
 
-  const post = await Post.findById(id).select("title body author userId");
+  const post = await Post.findById(id).select("title body author userId likes");
 
   if (!post) {
     return res.status(404).json({ error: "No Matching Post Found." });
@@ -101,16 +136,14 @@ const DeletePost = async (req, res) => {
 //////////////////////////////////////////////////////////
 const LikePost = async (req, res) => {
   try {
-    const { id } = req.params;
-    const post = await Post.findById(id);
-
-    const updatedPost = await Post.findByIdAndUpdate(
-      id,
-      { likeCount: post.likeCount + 1 },
-      { new: true }
-    );
-
-    res.json(updatedPost);
+    const post = await Post.findById(req.params.id);
+    if (!post.likes.includes(req.body.userId)) {
+      await post.updateOne({ $push: { likes: req.body.userId } });
+      res.status(200).json("post liked");
+    } else {
+      await post.updateOne({ $pull: { likes: req.body.userId } });
+      res.status(200).json("post disliked");
+    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -124,4 +157,6 @@ module.exports = {
   UpdatePost,
   LikePost,
   getAllPostsCount,
+  getAllAnsweredPosts,
+  getAllUnAnsweredPosts,
 };

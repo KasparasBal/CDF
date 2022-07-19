@@ -40,9 +40,12 @@ const Home = (props) => {
   ///POST COUNT
   const { data: count } = useFetch("http://localhost:8000/count");
   //POSTS
-  let number = Math.trunc(count / 3);
+  let number = Math.ceil(count / 3);
   const [page, setPage] = useState(1);
-  const { data, loading, error } = useFetch(`http://localhost:8000/?p=${page}`);
+  const [filter, setFilter] = useState("/");
+  const { data, loading, error } = useFetch(
+    `http://localhost:8000${filter}?p=${page}`
+  );
 
   function handlePrevious() {
     setPage((p) => {
@@ -72,14 +75,14 @@ const Home = (props) => {
         <div className="pagination_filter_container">
           <div className="filter_select_container">
             Filter By:
-            <select className="filter_select">
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value)}
+              className="filter_select"
+            >
               <option value="/">All Answers</option>
-              <option value="/mostAnswers">Most Answers</option>
-              <option value="/mostLikes">Most Likes</option>
-              <option value="/mostDislikes">Most Dislikes</option>
-              <option value="/leastAnswers">Least Answers</option>
-              <option value="/leastLikes">Least Likes</option>
-              <option value="/leastDislikes">Least Dislikes</option>
+              <option value="/answered/">Answered</option>
+              <option value="/unanswered/">Unanswered</option>
             </select>
           </div>
           <div className="pagination">

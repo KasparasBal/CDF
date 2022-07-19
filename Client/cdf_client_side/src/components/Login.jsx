@@ -39,9 +39,6 @@ const Login = () => {
         setLoggedIn(true);
         setUserInfo(result.data.username);
         setUser(result.data.userId);
-        console.log(userInfo);
-        console.log(result.data.userId);
-        console.log(user);
         localStorage.setItem("TOKEN", result.data.token);
 
         navigate("/");

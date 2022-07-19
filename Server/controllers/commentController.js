@@ -26,6 +26,14 @@ const commentCtrl = {
         { new: true }
       );
 
+      await Posts.findOneAndUpdate(
+        { _id: postId },
+        {
+          $inc: { commentsArrayLength: 1 },
+        },
+        { new: true }
+      );
+
       await newComment.save();
       res.json({ newComment });
     } catch (err) {
@@ -38,6 +46,16 @@ const commentCtrl = {
       const comments = await Comments.find()
         .select("content _id author user postId edited ")
         .populate("user");
+
+      res.json(comments);
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+
+  getCommentCount: async (req, res) => {
+    try {
+      const comments = await Comments.find().count();
 
       res.json(comments);
     } catch (err) {

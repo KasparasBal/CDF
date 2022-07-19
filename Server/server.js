@@ -16,9 +16,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 //connect to DB
 dbConnect();
-
-app.use(cors());
 //CORS
+app.use(cors());
+
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
@@ -27,12 +27,10 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PUT, DELETE, PATCH, OPTIONS"
+    "GET, POST, DELETE, PATCH, PUT, OPTIONS"
   );
   next();
 });
-
-//TESTING ROUTES
 
 //routes
 

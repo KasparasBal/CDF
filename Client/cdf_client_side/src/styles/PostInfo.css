@@ -86,3 +86,31 @@
   height: 2rem;
   margin: 0rem 0.5rem 0rem 1rem;
 }
+
+.reaction_btn {
+  width: 2rem;
+  height: 2rem;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  margin: 0.5rem;
+  margin-right: 1rem;
+  transition: 0.3s ease;
+}
+.reaction_btn:hover {
+  color: #009688;
+  transition: 0.3s ease;
+}
+
+.reaction_btn2 {
+  width: 2rem;
+  height: 2rem;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+  color: #009688;
+  margin: 0.5rem;
+  margin-right: 1rem;
+  transition: 0.3s ease;
+}
