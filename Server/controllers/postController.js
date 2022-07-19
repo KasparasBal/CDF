@@ -10,8 +10,15 @@ const router = require("express").Router();
 const getAllPosts = async (req, res) => {
   const posts = await Post.find()
     .select("title body author userId")
-
     .sort({ createdAt: -1 });
+
+  res.status(200).json(posts);
+};
+
+//GetAllPostsCount
+//////////////////////////////////////////////////////
+const getAllPostsCount = async (req, res) => {
+  const posts = await Post.find().count();
 
   res.status(200).json(posts);
 };
@@ -171,4 +178,5 @@ module.exports = {
   CommentPost,
   comment,
   deleteComment,
+  getAllPostsCount,
 };

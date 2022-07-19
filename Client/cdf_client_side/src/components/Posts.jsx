@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "../styles/Posts.css";
+import { useContext } from "react";
+import { LikeContext } from "../context/LikeContext";
 import { useParams } from "react-router-dom";
 
 const like = (
@@ -56,6 +58,8 @@ const comment = (
 const Posts = (props) => {
   const { id } = useParams();
   console.log(id);
+  const { color, setColor } = useContext(LikeContext);
+
   return (
     <div className="posts">
       {props.posts.map((post) => (

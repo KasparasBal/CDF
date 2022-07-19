@@ -4,6 +4,7 @@ import "../styles/Home.css";
 
 import loading_gif from "../img/Loading_Gif.gif";
 import useFetch from "../hooks/useFetch";
+import AllPostsCount from "./AllPostsCount";
 
 const Home = (props) => {
   const { data, loading, error } = useFetch("http://localhost:8000/");
@@ -17,6 +18,7 @@ const Home = (props) => {
           </div>
         )}
         <div className="posts_title">All Questions</div>
+        <AllPostsCount />
         {data && <Posts posts={data} />}
       </div>
     </div>

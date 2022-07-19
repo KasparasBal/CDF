@@ -11,6 +11,7 @@ const {
   CommentPost,
   comment,
   deleteComment,
+  getAllPostsCount,
 } = require("../Controllers/postController");
 
 const router = express.Router();
@@ -21,6 +22,9 @@ const router = express.Router();
 
 //Get All Posts
 router.get("/", getAllPosts);
+
+//Get All Posts
+router.get("/count", getAllPostsCount);
 
 //Get single Post
 router.get("/posts/:id", getSinglePost);

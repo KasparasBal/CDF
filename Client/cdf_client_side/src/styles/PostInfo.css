@@ -66,6 +66,7 @@
   color: #555;
 }
 .comment {
+  max-width: 70rem;
   margin: 2rem;
   border-left: 1rem solid #343a40;
   padding: 1rem;
