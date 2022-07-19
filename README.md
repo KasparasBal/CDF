@@ -11,6 +11,8 @@
 9. `npm start` in Client
 10. Enjoy :)
 
+#Should be automatically connected to MongoDb
+
 Features: 
 1. Create, Update, Delete Posts (must be logged in)
 2. Create, Update, Delete Comments (must be logged in)
