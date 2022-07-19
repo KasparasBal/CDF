@@ -1,4 +1,5 @@
 const User = require("../Models/userModel");
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -101,7 +102,45 @@ const login = (request, response) => {
     });
 };
 
+//Get User
+//////////////////////////////////////////////////////////
+const getUser = async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No Matching User Found" });
+  }
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return res.status(404).json({ error: "No Matching User Found." });
+  }
+
+  res.status(200).json(user);
+};
+
+//Update User
+//////////////////////////////////////////////////////////
+
+const updateUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    //Check if profile owner matches
+    if (user.userId === req.params.Id) {
+      await user.updateOne({ $set: req.body });
+      req.status(200).json("the user information has been updated");
+    } else {
+      res.status(403).json("Only the owner can update this!");
+    }
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
+};
+
 module.exports = {
   register,
   login,
+  getUser,
+  updateUser,
 };

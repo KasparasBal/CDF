@@ -45,6 +45,7 @@ Button Hover 2: #e66108;
   margin: 1rem;
   padding: 1rem;
   transition: 0.3s ease;
+  border: none;
 }
 .link:hover {
   background-color: rgb(194, 196, 199);

@@ -8,6 +8,7 @@ import Create from "./components/Create";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import PostInfo from "./components/PostInfo";
+import EditProfile from "./components/EditProfile";
 
 import "./styles/App.css";
 
@@ -40,6 +41,10 @@ function App() {
                     <Route path="/create" element={<Create />}></Route>
                     <Route path="/profile" element={<Profile />}></Route>
                     <Route path="/login" element={<Login />}></Route>
+                    <Route
+                      path="/editProfile/:id"
+                      element={<EditProfile />}
+                    ></Route>
 
                     <Route path="/register" element={<Register />}></Route>
                     <Route path="/posts/:id" element={<PostInfo />}></Route>

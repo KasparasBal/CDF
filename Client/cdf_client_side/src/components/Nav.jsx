@@ -95,6 +95,10 @@ const Nav = () => {
     navigate("/");
   };
 
+  const handleNotification = () => {
+    alert("Please login");
+  };
+
   return (
     <nav className="nav_container">
       <Link to="/" className="logo">
@@ -115,9 +119,18 @@ const Nav = () => {
           {home}
         </Link>
 
-        <Link className="link" to="/profile">
-          {user}
-        </Link>
+        {!loggedIn && (
+          <Link onClick={handleNotification} className="link" to="/">
+            {user}
+          </Link>
+        )}
+
+        {loggedIn && (
+          <Link className="link" to="/profile">
+            {user}
+          </Link>
+        )}
+
         <Link className="link" to="/create">
           {pencil}
         </Link>

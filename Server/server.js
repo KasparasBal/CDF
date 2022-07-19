@@ -5,10 +5,10 @@ const bodyParser = require("body-parser");
 const usersRoutes = require("./Routes/userRoutes");
 const postRoutes = require("./Routes/postRoutes");
 const commentRoutes = require("./Routes/commentRoutes");
+const cors = require("cors");
 
 //middleware
 const dbConnect = require("./db/dbConnect");
-const auth = require("./auth");
 
 // body parser
 app.use(bodyParser.json());
@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //connect to DB
 dbConnect();
 
+app.use(cors());
 //CORS
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
