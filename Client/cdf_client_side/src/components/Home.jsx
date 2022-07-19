@@ -80,7 +80,8 @@ const Home = (props) => {
               onChange={(e) => setFilter(e.target.value)}
               className="filter_select"
             >
-              <option value="/">All Answers</option>
+              <option value="/">Latest</option>
+              <option value="/oldest/">Oldest</option>
               <option value="/answered/">Answered</option>
               <option value="/unanswered/">Unanswered</option>
             </select>

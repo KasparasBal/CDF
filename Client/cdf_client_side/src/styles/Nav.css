@@ -18,6 +18,8 @@ Button Hover 2: #e66108;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.116);
 }
 .search_bar {
+  cursor: default;
+  opacity: 0;
   width: 60rem;
   padding: 1rem;
 

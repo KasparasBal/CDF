@@ -12,6 +12,7 @@
 .postInfo_title_container {
   padding: 2rem;
   background-color: #333;
+  position: relative;
 }
 .postInfo_title {
   color: #fff;
@@ -56,6 +57,7 @@
   height: 0.1rem;
 }
 .comment_content {
+  contain: content;
   padding: 2rem;
   font-size: 1.5rem;
   color: #343a40;
@@ -64,6 +66,7 @@
   display: flex;
 
   align-items: center;
+  justify-content: space-between;
   padding: 1rem;
   font-size: 1.2rem;
   color: #555;
@@ -113,4 +116,129 @@
   margin: 0.5rem;
   margin-right: 1rem;
   transition: 0.3s ease;
+}
+.edited {
+  color: #fff;
+  opacity: 100;
+}
+.not_edited {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+
+.answ_edited {
+  color: #333;
+  opacity: 100;
+  margin-right: 1rem;
+}
+.answ_not_edited {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  font-size: 0;
+}
+
+.edit_post {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  padding: 1rem;
+  opacity: 100;
+}
+
+.edit_post :hover {
+  background-color: #fff;
+  color: #009688;
+  transition: 0.3s ease;
+  cursor: pointer;
+  border-radius: 5000rem;
+}
+
+.edit_post_restricted {
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.delete_post {
+  color: #fff;
+  position: absolute;
+  top: 2rem;
+  right: 7rem;
+  width: 2rem;
+  height: 2rem;
+  padding: 1rem;
+  opacity: 100;
+  border-radius: 5000rem;
+}
+
+.delete_post :hover {
+  color: red;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.delete_post_restricted {
+  position: absolute;
+  top: 2rem;
+  right: 7rem;
+  width: 2rem;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.edit_comment {
+  color: #333;
+  padding: 1rem;
+  opacity: 100;
+}
+
+.edit_comment:hover {
+  background-color: rgb(207, 207, 207);
+  color: #009688;
+  transition: 0.3s ease;
+  cursor: pointer;
+  border-radius: 5000rem;
+}
+
+.edit_comment_restricted {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.delete_comment {
+  color: #333;
+  height: 2rem;
+  padding: 1rem;
+  opacity: 100;
+  border-radius: 5000rem;
+}
+
+.delete_comment:hover {
+  color: red;
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.delete_comment_restricted {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.comment_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.comment_actions {
+  display: flex;
 }

@@ -56,6 +56,22 @@ const getAllUnAnsweredPosts = async (req, res) => {
   res.status(200).json(posts);
 };
 
+//GetAllPosts;
+//////////////////////////////////////////////////////
+const getOldestPosts = async (req, res) => {
+  //pagination
+  const page = req.query.p || 1;
+  const postsPerPage = 3;
+  const skip = (page - 1) * postsPerPage;
+
+  const posts = await Post.find({ comments: { $size: 0 } })
+    .select("title body author userId")
+    .skip(skip)
+    .limit(postsPerPage);
+
+  res.status(200).json(posts);
+};
+
 //GetAllPostsCount
 //////////////////////////////////////////////////////
 const getAllPostsCount = async (req, res) => {
@@ -73,7 +89,9 @@ const getSinglePost = async (req, res) => {
     return res.status(400).json({ error: "No Matching Post Found" });
   }
 
-  const post = await Post.findById(id).select("title body author userId likes");
+  const post = await Post.findById(id).select(
+    "title body author userId likes edited"
+  );
 
   if (!post) {
     return res.status(404).json({ error: "No Matching Post Found." });
@@ -159,4 +177,5 @@ module.exports = {
   getAllPostsCount,
   getAllAnsweredPosts,
   getAllUnAnsweredPosts,
+  getOldestPosts,
 };

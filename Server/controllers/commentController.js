@@ -65,16 +65,16 @@ const commentCtrl = {
 
   updateComment: async (req, res) => {
     try {
-      const { content } = req.body;
-
-      await Comments.findOneAndUpdate(
-        { _id: req.params.id, user: req.user._id },
-        { content }
-      );
-
-      res.json({ msg: "updated successfully." });
+      const comment = await Comments.findById(req.params.id);
+      //Check if post owner matches
+      if (comment.userId === req.body.userId) {
+        await comment.updateOne({ $set: req.body });
+        req.status(200).json("the comment has been updated");
+      } else {
+        res.status(403).json("Only the author can update this!");
+      }
     } catch (err) {
-      return res.status(500).json({ msg: err.message });
+      res.status(500).json({ err });
     }
   },
 
@@ -101,24 +101,6 @@ const commentCtrl = {
       );
 
       res.json({ msg: "Comment liked successfully." });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
-    }
-  },
-
-  unLikeComment: async (req, res) => {
-    try {
-      await Comments.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $pull: { likes: req.user._id },
-        },
-        {
-          new: true,
-        }
-      );
-
-      res.json({ msg: "Comment unliked successfully." });
     } catch (err) {
       return res.status(500).json({ msg: err.message });
     }

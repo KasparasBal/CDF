@@ -11,6 +11,7 @@ const {
   getAllPostsCount,
   getAllAnsweredPosts,
   getAllUnAnsweredPosts,
+  getOldestPosts,
 } = require("../Controllers/postController");
 
 const router = express.Router();
@@ -21,6 +22,8 @@ const router = express.Router();
 
 //Get All Posts
 router.get("/", getAllPosts);
+
+router.get("/oldest", getOldestPosts);
 
 //Get All Answered Posts
 router.get("/answered", getAllAnsweredPosts);
